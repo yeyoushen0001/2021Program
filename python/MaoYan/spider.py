@@ -22,4 +22,13 @@ def parse_one_page(html):
     for item in items:
         yield {
             'index': item[0], 
+            'image': item[1],
+            'title': item[2],
+            'actor': item[3].strip()[3:],
+            'time': item[4].strip()[5:],
+            'score': item[5] + item[6]
         }
+
+def write_to_file(content):
+    with open('result.txt', 'a', encoding='utf-8') as f:
+        f.write(json.dumps(content, ensure_ascii=False) + '\n')
